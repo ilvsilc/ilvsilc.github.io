@@ -1,10 +1,769 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-  <title>ILVS AI 平台</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>宜蘭高商教官室 | 校園安全與全民國防</title>
+    <!-- Google Fonts & Font Awesome 6 (free) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 導航欄 */
+        .navbar {
+            background: #0f2b3d;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0.9rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo i {
+            font-size: 2rem;
+            color: #ffcd4a;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            font-weight: 500;
+            font-size: 0.85rem;
+            background: #ffcd4a20;
+            padding: 2px 8px;
+            border-radius: 30px;
+            color: #ffeaac;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #e2e8f0;
+            transition: 0.2s;
+            font-size: 1rem;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover {
+            color: #ffcd4a;
+            border-bottom-color: #ffcd4a;
+        }
+
+        /* Hero 區塊 */
+        .hero {
+            background: linear-gradient(105deg, #0a2a38 0%, #154c5e 100%);
+            position: relative;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://picsum.photos/id/20/1600/500');
+            background-size: cover;
+            background-position: center 30%;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-content i {
+            font-size: 3.2rem;
+            background: #ffcd4a30;
+            padding: 12px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .hero-content h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .btn-hero {
+            background: #ffcd4a;
+            color: #1e293b;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-hero:hover {
+            background: #ffc107;
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ffcd4a;
+            border-radius: 4px;
+        }
+
+        /* 關於教官室 */
+        .about-grid {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+        }
+        .about-text {
+            flex: 2;
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #0f2b3d;
+        }
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+        .about-stats {
+            flex: 1;
+            background: #eef2ff;
+            padding: 1.5rem;
+            border-radius: 28px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #0f2b3d;
+        }
+
+        /* 最新消息 + 服務項目 */
+        .news-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .news-section {
+            flex: 1.2;
+            background: white;
+            border-radius: 32px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        }
+        .services-section {
+            flex: 1.8;
+        }
+        .news-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .news-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.2s;
+        }
+        .news-list li:hover {
+            background: #f1f5f9;
+            padding-left: 8px;
+        }
+        .news-date {
+            background: #ffcd4a30;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2c3e4e;
+        }
+        .news-title {
+            font-weight: 500;
+            color: #0f2b3d;
+            flex: 1;
+        }
+        .more-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #0f2b3d;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .service-card {
+            background: white;
+            padding: 1.8rem 1rem;
+            border-radius: 28px;
+            text-align: center;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+            border: 1px solid #eef2ff;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1);
+            border-color: #ffcd4a;
+        }
+        .service-icon {
+            font-size: 2.6rem;
+            color: #ffb703;
+            margin-bottom: 1rem;
+        }
+        .service-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        /* 教官團隊 (更新為真實名單) */
+        .team-section {
+            margin: 4rem 0;
+        }
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .team-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            width: 260px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+        .team-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+        .avatar {
+            background: #e6f0f5;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 3rem;
+            color: #0f2b3d;
+        }
+        .team-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.2rem;
+        }
+        .team-title {
+            color: #ffb703;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .team-contact {
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        /* 聯絡資訊區塊 */
+        .contact-section {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+            border: 1px solid #eef2ff;
+        }
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+        .contact-detail {
+            margin: 1rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .contact-detail i {
+            width: 32px;
+            font-size: 1.3rem;
+            color: #ffb703;
+        }
+        .map-placeholder {
+            flex: 1;
+            background: #e9f0f5;
+            border-radius: 28px;
+            padding: 1rem;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .map-placeholder i {
+            font-size: 3rem;
+            color: #5a7d9a;
+            margin-bottom: 0.8rem;
+        }
+        .btn-outline {
+            border: 2px solid #0f2b3d;
+            background: transparent;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: inline-block;
+            text-decoration: none;
+            color: #0f2b3d;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #0f2b3d;
+            color: white;
+        }
+
+        footer {
+            background: #0f2b3d;
+            color: #cbd5e1;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .social-icons a {
+            color: #cbd5e1;
+            margin: 0 8px;
+            font-size: 1.3rem;
+            transition: 0.2s;
+        }
+        .social-icons a:hover {
+            color: #ffcd4a;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                justify-content: center;
+                gap: 1.2rem;
+            }
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .about-grid {
+                flex-direction: column;
+            }
+            .news-services {
+                flex-direction: column;
+            }
+            .contact-flex {
+                flex-direction: column;
+            }
+            .team-card {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .back2top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f2b3d;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: 0.2s;
+            z-index: 99;
+        }
+        .back2top:hover {
+            opacity: 1;
+            background: #ffcd4a;
+            color: #0f2b3d;
+        }
+    </style>
 </head>
 <body>
-  <h1>成功了 🎉</h1>
-  <p>這是 ilvsilc 的網站</p>
+
+<div class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-shield-haltered"></i>
+            <h1>宜蘭高商教官室</h1>
+            <span>校園安全中心</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">首頁</a></li>
+            <li><a href="#about">關於我們</a></li>
+            <li><a href="#news">最新消息</a></li>
+            <li><a href="#services">服務項目</a></li>
+            <li><a href="#team">教官團隊</a></li>
+            <li><a href="#contact">聯絡我們</a></li>
+        </ul>
+    </div>
+</div>
+
+<section id="home">
+    <div class="hero">
+        <div class="container hero-content">
+            <i class="fas fa-graduation-cap"></i>
+            <h2>宜蘭高商教官室</h2>
+            <p>校園安全守護 · 生活輔導關懷 · 全民國防教育</p>
+            <a href="#team" class="btn-hero">認識我們的團隊 <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<main>
+    <div class="container">
+        <!-- 關於教官室 -->
+        <section id="about">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>關於教官室</h3>
+                    <p>宜蘭高商教官室（校安中心）負責校園安全維護、學生生活輔導、全民國防教育及校園災害防救。我們是學生最信賴的後盾，營造友善、安心、優質的學習環境，並與警政、社區網絡緊密合作，建構無毒、安全、有秩序的校園。</p>
+                    <p>透過正向輔導與多元宣導活動，培養學生守法、自律及關懷社會的責任感。教官室亦提供役期折抵、急難救助、反毒宣導等服務，歡迎同學及家長多加利用。</p>
+                </div>
+                <div class="about-stats">
+                    <i class="fas fa-phone-alt" style="font-size: 2rem; color:#0f2b3d;"></i>
+                    <div class="stat-number">24hr</div>
+                    <p>校安專線服務</p>
+                    <div class="stat-number">100%</div>
+                    <p>校園巡護落實率</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最新消息 + 服務項目 -->
+        <div class="news-services">
+            <div class="news-section" id="news">
+                <h3 class="section-title" style="font-size: 1.8rem; text-align: left; margin-bottom: 1rem;">📢 最新消息</h3>
+                <ul class="news-list">
+                    <li>
+                        <span class="news-date">2026.04.01</span>
+                        <span class="news-title">113學年度第2學期交通安全宣導月正式啟動</span>
+                        <i class="fas fa-angle-right" style="color:#ffb703;"></i>
+                    </li>
+                    <li>
+                        <span class="news-date">2026.03.25</span>
+                        <span class="news-title">全民國防教育「步槍射擊體驗」報名至4/10止</span>
+                        <i class="fas fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <span class="news-date">2026.03.18</span>
+                        <span class="news-title">反毒知能研習：新興毒品辨識與防制講座</span>
+                        <i class="fas fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <span class="news-date">2026.03.08</span>
+                        <span class="news-title">校園安全複合式防災演練圓滿完成</span>
+                        <i class="fas fa-angle-right"></i>
+                    </li>
+                </ul>
+                <a href="#" class="more-link">更多公告 →</a>
+            </div>
+
+            <div class="services-section" id="services">
+                <h3 class="section-title" style="font-size: 1.8rem; text-align: left; margin-bottom: 1rem;">⚙️ 核心服務項目</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-shield-virus"></i></div>
+                        <h4>校園安全維護</h4>
+                        <p>24h校安通報、門禁管理、監視系統及緊急應變</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-car-side"></i></div>
+                        <h4>交通安全教育</h4>
+                        <p>交通安全講座、愛心導護、自行車安全宣導</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-leaf"></i></div>
+                        <h4>春暉反毒宣導</h4>
+                        <p>藥物濫用防制、高關懷學生輔導、紫錐花運動</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-chalkboard-user"></i></div>
+                        <h4>全民國防教育</h4>
+                        <p>國防課程、實彈射擊、全民防衛動員</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h4>生活輔導與諮詢</h4>
+                        <p>役期折抵、急難救助、學生獎懲與輔導</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 教官團隊 (真實名單) -->
+        <div class="team-section" id="team">
+            <h3 class="section-title">👨‍🏫 教官室成員介紹</h3>
+            <div class="team-grid">
+                <!-- 主任教官 高榮新 -->
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user-tie fa-3x"></i></div>
+                    <h4>高榮新</h4>
+                    <div class="team-title">主任教官</div>
+                    <p>統籌校園安全、全民國防教育及教官室綜合業務</p>
+                    <div class="team-contact"><i class="fas fa-phone-alt"></i> 分機 350</div>
+                </div>
+                <!-- 生輔組長 蔡坤龍 -->
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user-graduate fa-3x"></i></div>
+                    <h4>蔡坤龍</h4>
+                    <div class="team-title">生輔組長</div>
+                    <p>生活輔導、品德教育、學生獎懲及請假業務</p>
+                    <div class="team-contact"><i class="fas fa-phone-alt"></i> 分機 360</div>
+                </div>
+                <!-- 學務創新人員 石育全 -->
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user-check fa-3x"></i></div>
+                    <h4>石育全</h4>
+                    <div class="team-title">學務創新人員</div>
+                    <p>校園安全巡查、賃居輔導、防災業務</p>
+                    <div class="team-contact"><i class="fas fa-phone-alt"></i> 分機 363</div>
+                </div>
+                <!-- 學務創新人員 李明貞 -->
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user-friends fa-3x"></i></div>
+                    <h4>李明貞</h4>
+                    <div class="team-title">學務創新人員</div>
+                    <p>學生輔導、紫錐花反毒宣導、性平教育</p>
+                    <div class="team-contact"><i class="fas fa-phone-alt"></i> 分機 360</div>
+                </div>
+                <!-- 學務創新人員 王英樺 -->
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user-shield fa-3x"></i></div>
+                    <h4>王英樺</h4>
+                    <div class="team-title">學務創新人員</div>
+                    <p>交通安全、全民國防教育活動規劃</p>
+                    <div class="team-contact"><i class="fas fa-phone-alt"></i> 分機 361</div>
+                </div>
+                <!-- 學務創新人員 李亮頡 -->
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user-astronaut fa-3x"></i></div>
+                    <h4>李亮頡</h4>
+                    <div class="team-title">學務創新人員</div>
+                    <p>校園夜間安全、緊急事件協處、監視系統管理</p>
+                    <div class="team-contact"><i class="fas fa-phone-alt"></i> 分機 361</div>
+                </div>
+                <!-- 書記 許亞位 -->
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user-cog fa-3x"></i></div>
+                    <h4>許亞位</h4>
+                    <div class="team-title">書記</div>
+                    <p>教官室行政庶務、役期折抵、公文收發及資料管理</p>
+                    <div class="team-contact"><i class="fas fa-phone-alt"></i> 分機 363</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 聯絡資訊區塊 -->
+        <section id="contact">
+            <div class="contact-section">
+                <h3 class="section-title" style="margin-bottom: 1.5rem;">📞 聯絡教官室</h3>
+                <div class="contact-flex">
+                    <div class="contact-info">
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>260 宜蘭縣宜蘭市延平路50號 (行政大樓1F 教官室)</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>校安專線：(03)938-4141 轉 350 (主任教官) / 360 (生輔組)</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <span>military@ilvs.ilc.edu.tw</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>服務時間：週一至週五 07:30 - 17:00 | 校安專線24小時</span>
+                        </div>
+                        <a href="#" class="btn-outline"><i class="fas fa-bell"></i> 校安緊急通報系統</a>
+                    </div>
+                    <div class="map-placeholder">
+                        <i class="fas fa-school"></i>
+                        <p><strong>國立宜蘭高級商業職業學校</strong><br>教官室位於行政大樓1樓<br>歡迎親洽或來電諮詢</p>
+                        <i class="fas fa-location-dot" style="margin-top: 8px;"></i> 校園地圖指引
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="container footer-content">
+        <div>© 2026 國立宜蘭高級商業職業學校 教官室 | 校園安全中心</div>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Line"><i class="fab fa-line"></i></a>
+            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div>友善校園 · 安心學習 · 全民國防</div>
+    </div>
+</footer>
+
+<a href="#home" class="back2top" aria-label="回到頂端">
+    <i class="fas fa-chevron-up"></i>
+</a>
+
+<script>
+    // 平滑滾動及導航高亮
+    document.querySelectorAll('.nav-links a, .btn-hero, .back2top, .more-link, .btn-outline').forEach(anchor => {
+        if(anchor.getAttribute('href') && anchor.getAttribute('href').startsWith('#')) {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    history.pushState(null, null, targetId);
+                }
+            });
+        }
+    });
+
+    const sections = document.querySelectorAll('section[id], #about, #news, #services, #team, #contact');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 100;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.style.color = '#e2e8f0';
+            link.style.borderBottomColor = 'transparent';
+            if(link.getAttribute('href') === `#${current}`) {
+                link.style.color = '#ffcd4a';
+                link.style.borderBottomColor = '#ffcd4a';
+            }
+        });
+    });
+    window.dispatchEvent(new Event('scroll'));
+</script>
 </body>
 </html>
